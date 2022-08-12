@@ -98,6 +98,7 @@ def full_passthrough(self):
 ## Rotor:
 
 def __init__(self, rotor):
+
     """
     __init__ takes a string of rotor cypher and notch position
     saves it in 2 class variables.
@@ -108,24 +109,28 @@ def __init__(self, rotor):
     """
 
 def rotor(self, letter):
+
     """
     rotor takes a letter and finds its index in the alphabet
     passes the index into the rotor cypher string and returns it.
     """
 
 def back_rotor(self, letter):
+
     """
     back_rotor takes a letter and finds its index in the rotor cypher string
     passes the index into the alphabet string and retrurns is ( this is the back pass )
     """
 
 def rotate(self, n=1):
+
     """
     takes in a default value of 1 and rotates the rotor with every call
     of the function.
     """
 
 def rotate_key(self, n):
+
     """
     takes in an int value for variable n and rotates the rotor to an "n" position
     used for settings.
@@ -134,6 +139,7 @@ def rotate_key(self, n):
 ## Reflector:
 
 def __init__(self, reflector):
+
     """
     takes in a string and assignes it to a class variable
 
