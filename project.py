@@ -1,3 +1,10 @@
+"""
+CS50P Final Project: THE ENIGMA MACHINE
+Author: BORIS GOLDYREV
+From: EDMONTON, ALBERTA, CANADA!
+"""
+
+
 
 import sys
 import string
