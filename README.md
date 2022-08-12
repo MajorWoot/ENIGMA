@@ -93,7 +93,8 @@
             Simulates a full pass of electric signal though various parts of the machine.
             Returns encrypted string or decrypted string.
 
-            P.S. The 'magic' of the Enigma machine is the settings and path for encryption and decryption are exactly the same.   
+            P.S. The 'magic' of the Enigma machine is the settings and path for encryption
+            and decryption are exactly the same.   
             '''
 
     ## Rotor:
