@@ -63,9 +63,10 @@ Enigma takes all of the settings in a form of an __init__ class function assigni
 rotor_n and reflector class variables become Rotor and Reflector class instances.
 
 def __init__(self, letter, rotor_1=rotor_1, rotor_2=rotor_2, rotor_3=rotor_3, rotor_key="AAA", reflector=reflector_1, switch_dict={"A":"B"}):
-    """
+
     The default values get passed in for default encryption.
 
+    """
     self.switch_dict = switch_dict
     self.rotor_1 = Rotor(rotor_1)
     self.rotor_2 = Rotor(rotor_2)
@@ -77,6 +78,7 @@ def __init__(self, letter, rotor_1=rotor_1, rotor_2=rotor_2, rotor_3=rotor_3, ro
     """
 
 def string_format(self, input_string):
+    
     '''
     Formats the incoming string, taking out spaces, punctuation and capitalizing entire string.
     Returns fully formated 
@@ -85,6 +87,7 @@ def string_format(self, input_string):
 
 
 def full_passthrough(self):
+
     '''
     Simulates a full pass of electric signal though various parts of the machine.
     Returns encrypted string or decrypted string.
