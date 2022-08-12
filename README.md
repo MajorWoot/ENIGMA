@@ -58,94 +58,94 @@
 
         class Switchboard:
     
-## Enigma:
+    ## Enigma:
 
-    Enigma takes all of the settings in a form of an __init__ class function assigning values to its class variables.
-    rotor_n and reflector class variables become Rotor and Reflector class instances.
+        Enigma takes all of the settings in a form of an __init__ class function assigning values to its class variables.
+        rotor_n and reflector class variables become Rotor and Reflector class instances.
 
-    def __init__(self, letter, rotor_1=rotor_1, rotor_2=rotor_2, rotor_3=rotor_3, rotor_key="AAA", reflector=reflector_1, switch_dict={"A":"B"}):
+        def __init__(self, letter, rotor_1=rotor_1, rotor_2=rotor_2, rotor_3=rotor_3, rotor_key="AAA", reflector=reflector_1, switch_dict={"A":"B"}):
 
-        The default values get passed in for default encryption.
+            The default values get passed in for default encryption.
 
-        """
-        self.switch_dict = switch_dict
-        self.rotor_1 = Rotor(rotor_1)
-        self.rotor_2 = Rotor(rotor_2)
-        self.rotor_3 = Rotor(rotor_3)
-        self.rotor_key = rotor_key
-        self.reflector = Reflector(reflector)
-        self.letter = letter
-        self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        """
+            """
+            self.switch_dict = switch_dict
+            self.rotor_1 = Rotor(rotor_1)
+            self.rotor_2 = Rotor(rotor_2)
+            self.rotor_3 = Rotor(rotor_3)
+            self.rotor_key = rotor_key
+            self.reflector = Reflector(reflector)
+            self.letter = letter
+            self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            """
 
-    def string_format(self, input_string):
+        def string_format(self, input_string):
+            
+            '''
+            Formats the incoming string, taking out spaces, punctuation and capitalizing entire string.
+            Returns fully formated 
+            '''
         
-        '''
-        Formats the incoming string, taking out spaces, punctuation and capitalizing entire string.
-        Returns fully formated 
-        '''
-    
 
 
-    def full_passthrough(self):
+        def full_passthrough(self):
 
-        '''
-        Simulates a full pass of electric signal though various parts of the machine.
-        Returns encrypted string or decrypted string.
+            '''
+            Simulates a full pass of electric signal though various parts of the machine.
+            Returns encrypted string or decrypted string.
 
-        P.S. The 'magic' of the Enigma machine is the settings and path for encryption and decryption are exactly the same.   
-        '''
+            P.S. The 'magic' of the Enigma machine is the settings and path for encryption and decryption are exactly the same.   
+            '''
 
-    ## Rotor:
+        ## Rotor:
 
-    def __init__(self, rotor):
+        def __init__(self, rotor):
 
-        """
-        __init__ takes a string of rotor cypher and notch position
-        saves it in 2 class variables.
+            """
+            __init__ takes a string of rotor cypher and notch position
+            saves it in 2 class variables.
 
-        self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        self.rotor_str = rotor[0]
-        self.rotor_notch = rotor[1]
-        """
+            self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self.rotor_str = rotor[0]
+            self.rotor_notch = rotor[1]
+            """
 
-    def rotor(self, letter):
+        def rotor(self, letter):
 
-        """
-        rotor takes a letter and finds its index in the alphabet
-        passes the index into the rotor cypher string and returns it.
-        """
+            """
+            rotor takes a letter and finds its index in the alphabet
+            passes the index into the rotor cypher string and returns it.
+            """
 
-    def back_rotor(self, letter):
+        def back_rotor(self, letter):
 
-        """
-        back_rotor takes a letter and finds its index in the rotor cypher string
-        passes the index into the alphabet string and retrurns is ( this is the back pass )
-        """
+            """
+            back_rotor takes a letter and finds its index in the rotor cypher string
+            passes the index into the alphabet string and retrurns is ( this is the back pass )
+            """
 
-    def rotate(self, n=1):
+        def rotate(self, n=1):
 
-        """
-        takes in a default value of 1 and rotates the rotor with every call
-        of the function.
-        """
+            """
+            takes in a default value of 1 and rotates the rotor with every call
+            of the function.
+            """
 
-    def rotate_key(self, n):
+        def rotate_key(self, n):
 
-        """
-        takes in an int value for variable n and rotates the rotor to an "n" position
-        used for settings.
-        """
+            """
+            takes in an int value for variable n and rotates the rotor to an "n" position
+            used for settings.
+            """
 
-## Reflector:
+    ## Reflector:
 
-    def __init__(self, reflector):
+        def __init__(self, reflector):
 
-        """
-        takes in a string and assignes it to a class variable
+            """
+            takes in a string and assignes it to a class variable
 
-        self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-        self.reflector = reflector
-        """
-        
+            self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            self.reflector = reflector
+            """
+            
 
