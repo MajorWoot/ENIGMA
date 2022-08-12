@@ -118,6 +118,11 @@ class Rotor:
         """
         __init__ takes a string of rotor cypher and notch position
         saves it in 2 class variables.
+
+        self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        self.rotor_str = rotor[0]
+        self.rotor_notch = rotor[1]
+
         """
 
         self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -139,7 +144,7 @@ class Rotor:
     def back_rotor(self, letter):
         """
         back_rotor takes a letter and finds its index in the rotor cypher string
-        passes the index into the alphabet string and retrurns is ( this is the back pass )
+        passes the index into the alphabet string and returns is ( this is the back pass )
         """
         index = self.rotor_str.find(letter)
         return self._alphabet[index]
@@ -163,7 +168,9 @@ class Rotor:
 class Reflector:
 
     def __init__(self, reflector):
-
+        """
+        takes in a string and assigns it to a class variable
+        """
         self._alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
         self.reflector = reflector
         # self.letter = letter
@@ -172,12 +179,24 @@ class Reflector:
         return f"Reflector string: -> {self.reflector}"
 
     def reflect(self, letter):
+
+        """
+        takes in a letter and "reflects" it
+        """
+
         index = self._alphabet.find(letter)
         return self.reflector[index]
 
 class Switchboard:
 
     def __init__(self, input_string, switch_dict):
+
+        """
+        takes in input string and a dictionary of key pair values to swap places.
+        Key = From letter, Value = To letter
+
+        assigns them to class variables
+        """
 
         self.input_string = input_string
         self.switch_dict = switch_dict
@@ -186,6 +205,13 @@ class Switchboard:
         return f"Input string: -> {self.input_string}. Switches made: -> {self.switch_dict}"
 
     def switchboard(self):
+
+        """
+        creates a reverse dictionary from the class variable 'switch_dict'
+        and appends them together to create a full dictionary of key pair 
+        values that can switch it both directions.
+        uses the dictionary to swap values and returns a new modified string. 
+        """
         
         rev_dict = {v: k for k, v in self.switch_dict.items()}
         switch_dict = {**self.switch_dict, **rev_dict} 
@@ -202,6 +228,14 @@ class Switchboard:
 
 
 def get_input_int(prompt="",condition=None, error=None):
+
+    """
+    takes in 3 or none custom arguments
+    prompt = What will be show in the terminal
+    condition = a lambda function with a condition to check the input
+    error = an error message that will be shown in case condition is not met
+    """
+
     while True:
         try:       
             response = int(input(prompt))
@@ -217,15 +251,22 @@ def get_input_int(prompt="",condition=None, error=None):
             sys.exit(error or "Invalid entry")
 
 def get_input_str(prompt="", condition=None, error=None):
+
+    """
+    takes in 3 or none custom arguments
+    prompt = What will be show in the terminal
+    condition = a lambda function with a condition to check the input
+    error = an error message that will be shown in case condition is not met
+    """
+
     while True:
         try:       
             response = str(input(prompt))
-            for i in response:
-                if not i.isdigit():
-                    assert condition is None or condition(response)
-                    return response
-                else:
-                    print(error or "Invalid entry")
+            if any(i.isdigit() for i in response):
+                print(error or "Invalid entry")
+            else:           
+                assert condition is None or condition(response)
+                return response   
         except KeyboardInterrupt:
             sys.exit("")
         except EOFError:
@@ -234,6 +275,13 @@ def get_input_str(prompt="", condition=None, error=None):
             print(error or "Invalid entry")
     
 def get_input_list(prompt="", error=None):
+
+    """
+    takes in 2 or none custom arguments
+    prompt = What will be show in the terminal
+    error = an error message that will be shown in case condition is not met
+    condition is hard coded in TODO
+    """
 
     while True:
         try:       
@@ -254,29 +302,43 @@ def get_input_list(prompt="", error=None):
 
 def default_enigma(quick_string):
 
+    """
+    takes in a string checks that its a string and not an int and 
+    side effect (prints) the default settings to screen for user to note
+    returns string back to caller function
+    """
+
     # print("Enter a string you would like to encrypt!")
     # quick_string = str(input("--->: "))
+    
+    
+    if any(i.isdigit() for i in quick_string):
+        print("Input can't contain any digits!")
+        sys.exit(1)
+    else:
 
-    for char in quick_string:
-        if char.isdigit():
-            print("Input can't contain any digits!")
-            sys.exit(1)
-        else:
-            # quick = Enigma(quick_string)
-            
-            print("""Settings used:
+        # quick = Enigma(quick_string)
+        
+        print("""Settings used:
 
 ROTOR Position 1: 1
 ROTOR Position 2: 2
 ROTOR Position 3: 3
 KEY for ROTOR setting: AAA
 REFLECTOR # ( 1: Alpha, 2: Bravo, 3: Charlie): 1
-PLUGBOARD comma seperated pair values: AB
+PLUGBOARD comma separated pair values: AB
 """)
-            # return quick.full_passthrough()
-            return quick_string
+        # return quick.full_passthrough()
+        return quick_string
                 
 def custom_enigma(letter, r1, r2, r3, key, reflector, switchboard):
+
+    """
+    takes in all inputs sent from 'user_input' (letter, r1, r2, r3, key, reflector, switchboard)
+    dynamically assigns them to variables (not suggested apparently)
+    converts switchboard list to a tuple and then to a dictionary
+    returns a tuple of converted and assigned variables back to caller function / variable
+    """
     
     r1 = globals()["rotor_%s" % r1]
     
@@ -296,6 +358,24 @@ def custom_enigma(letter, r1, r2, r3, key, reflector, switchboard):
     return custom.full_passthrough()
    
 def user_input():
+
+    """
+    prints to screen program related information and prompts for input
+    2 Options using the custom 'get_input_str' function
+    Quick encryption using standard settings
+    Custom settings
+
+    if option 1 
+        calls custom input function 'get_input_str'
+        checks if string
+        sends output to 'default_enigma' function
+        returns results of 'default_enigma' to caller function / variable
+    
+    if option 2
+        calls custom input functions 'get_input_int', 'get_input_str', and 'get_input_list'
+        sends variables to 'custom_enigma' function
+        returns results of 'custom_enigma' to caller function / variable
+    """
     
     print("Welcome to the Python version of the ENIGMA machine.")
     print("Please make your selection:")
@@ -310,7 +390,11 @@ def user_input():
     if option == 1:
         
         print("Enter a string you would like to encrypt!")
-        quick_string = str(input("--->: "))
+        # quick_string = str(input("--->: "))
+        quick_string = get_input_str(
+            condition=lambda x: len(x) > 0,
+            error="You did not enter a valid KEY"
+            )
         return default_enigma(quick_string)
 
     elif option == 2:
@@ -347,7 +431,7 @@ def user_input():
             )
         
         switchboard = get_input_list(
-            "Enter PLUGBOARD comma seperated pair values. (Eg: AZ, GF etc..) -> A will be changed to Z, G to F: ",
+            "Enter PLUGBOARD comma separated pair values. (Eg: AZ, GF etc..) -> A will be changed to Z, G to F: ",
             error="You did not enter a valid list, please follow the EXAMPLE or read the DOCUMENTATION"
             )
         letter = get_input_str(
@@ -389,6 +473,19 @@ def banner():
     print(r"                                                                                                                                                         ")
     
 def main():
+
+    """
+    main caller function
+    calls the 'banner' function that prints the banner
+    assigns results of 'user_input' to a variable 'x'
+    checks if results are a tuple
+    if yes
+        takes the tuple apart and sends all values to the 'Enigma' class init
+        and prints 'Enigma.full_passthrough' return
+    if no
+        takes the string and passes to 'Enigma' class init with defaults
+        and prints 'Enigma.full_passthrough' return
+    """
 
     banner()
     

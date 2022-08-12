@@ -235,20 +235,29 @@ V	        Z	If rotor steps from Z to A, the next rotor is advanced
 
 # print(get_input_list())
 
-def get_input_int(prompt="", condition=None, error=None):
-    while True:
-        try:       
-            response = int(input(prompt))
-            x = lambda x: x > 0 and x < 7
-            assert x(response)
-            return response
-        except KeyboardInterrupt:
-            sys.exit("")
-        except EOFError:
-            sys.exit("")
-        except:
-            print(error or "Invalid entry")
+# def get_input_int(prompt="", condition=None, error=None):
+#     while True:
+#         try:       
+#             response = int(input(prompt))
+#             x = lambda x: x > 0 and x < 7
+#             assert x(response)
+#             return response
+#         except KeyboardInterrupt:
+#             sys.exit("")
+#         except EOFError:
+#             sys.exit("")
+#         except:
+#             print(error or "Invalid entry")
 
-get_input_int()
+# get_input_int()
+
+x = "Hello1"
+
+for i in x:
+    if i not in string.ascii_letters:
+        print("got a digit")
+    else:
+        print("didnt get it")
+
 
 
