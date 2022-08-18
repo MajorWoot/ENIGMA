@@ -7,7 +7,7 @@ From: EDMONTON, ALBERTA, CANADA!
 """
 Future notes:
 you can use 'from collections import deque .rotate to rotate the rotors.
-will have to take a look and see if its faster or 'clearner' to code.
+will have to take a look and see if its faster or 'cleaner' to code.
 """
 
 import sys
